@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Constant} from "../../shared/helper/constant";
-import {ImageSliderModel} from "../../shared/components/image-slider/models/image-slider.model";
+import {Constant} from "../../../shared/helper/constant";
+import {ImageSliderModel} from "../../../shared/components/image-slider/models/image-slider.model";
 import {ActivatedRoute} from "@angular/router";
-import {SharedDataService} from "../../core/services/shareddata.service";
-import {GridViewmodel, CellStyle} from "../../shared/components/grid/viewmodel/grid.viewmodel";
-import {ParagraphViewmodel} from "../../shared/components/paragraph/viewmodel/paragraph.viewmodel";
+import {SharedDataService} from "../../services/shareddata.service";
+import {GridViewmodel, CellStyle} from "../../../shared/components/grid/viewmodel/grid.viewmodel";
+import {ParagraphViewmodel} from "../../../shared/components/paragraph/viewmodel/paragraph.viewmodel";
 
 @Component({
     selector: 'app-home',
@@ -13,7 +13,7 @@ import {ParagraphViewmodel} from "../../shared/components/paragraph/viewmodel/pa
 })
 export class HomeComponent implements OnInit {
     DefaultImageSlider: string = Constant.DefaultImageFileName;
-    SliderImages: ImageSliderModel[] = [];    
+    SliderImages: ImageSliderModel[] = [];
 
     constructor(private route: ActivatedRoute, private sharedData: SharedDataService) {
         this.SliderImages =

@@ -12,7 +12,7 @@ import {SendProductsCatalogByEmailDialogComponent} from './modules/price-list/co
 import {FeaturesTableComponent} from './modules/price-list/components/features-table/features-table.component';
 import {Routes, RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HomeComponent} from './modules/home/home.component';
+import {HomeComponent} from './core/modules/home/home.component';
 import {LoginComponent} from './shared/components/login/login.component'
 import {AuthService} from "./core/models/account/auth.service";
 import {SharedDataService} from "./core/services/shareddata.service";
@@ -22,7 +22,7 @@ import {AboutUsComponent} from './modules/about-us/about-us.component';
 import {VerticalMenuComponent} from './shared/components/vertical-menu/vertical-menu.component';
 import {ShippingProgramsComponent} from './modules/shipping-program/shipping-programs.component';
 import {PrivacyPolicyComponent} from './modules/privacy-policy/privacy-policy.component';
-import {ContactUsComponent} from './modules/contact-us/contact-us.component';
+import {ContactUsComponent} from './core/modules/contact-us/contact-us.component';
 import {VisitUsAtMarketComponent} from './modules/visit-us-at-market/visit-us-at-market.component';
 import {ShopComponent} from './modules/shop/shop.component';
 import {GroupGridFilterComponent} from './modules/price-list/components/group-grid-filter/group-grid-filter.component';
@@ -90,7 +90,7 @@ const appRoutes: Routes = [
         HorizontalSliderComponent,
         CheckOutComponent,
         AdvancedRequestCatalogComponent,
-        PoDataComponent,        
+        PoDataComponent,
         ClickedOutSideDirective, TutorialComponent
     ],
     imports: [
@@ -98,7 +98,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         FormsModule,
         ReactiveFormsModule,
-        NgSelectModule,        
+        NgSelectModule,
     ],
     providers: [AuthService, SharedDataService, CurrencyPipe],
     bootstrap: [AppComponent]

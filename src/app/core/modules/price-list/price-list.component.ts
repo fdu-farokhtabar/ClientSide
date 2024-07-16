@@ -70,25 +70,6 @@ export class PriceListComponent implements OnInit, OnDestroy {
             this.LoadSelectedCategories(Slug);
             this.LoadSelectedProducts();
 
-            // CategoryService.GetBySlugWithChildren(slug).then(data => {
-            //     this.Categories = data.sort((a, b) => a.Order > b.Order ? 1 : -1);
-            //     if (this.Categories != null && this.Categories.length > 0) {
-            //         if (this.Categories.length > 1)
-            //             this.Categories.splice(0, 1);
-            //         this.SetCategorySliderImages();
-            //         ProductService.GetByCategoryIds(this.Categories.map(x => x.Id)).then(data => {
-            //             for (let i = 0; i < this.Categories.length; i++) {
-            //                 this.Products[i] = data.filter(prd => {
-            //                     return prd.CategoryIds.includes(this.Categories[i].Id)
-            //                 });
-            //                 this.Products[i] = this.Products[i].sort((a, b) => a.Order > b.Order ? 1 : -1);
-            //             }
-            //             //this.SetProductsSliderImages();
-            //             this.SetProductPricesIndex();
-            //         }).catch(data => {
-            //         });
-            //     }
-            // });
 
         }
     }
@@ -225,7 +206,28 @@ export class PriceListComponent implements OnInit, OnDestroy {
     OnAddOrders(Orders: OrderModel[]){
        this.AddOrders = Orders;
     }
-
+    public GetCategoryServive{
+              const CategoryService = new CategoryGrpcService(this.account);
+              CategoryService.GetBySlugWithChildren(slug).then(data => {
+                this.Categories = data.sort((a, b) => a.Order > b.Order ? 1 : -1);
+                if (this.Categories != null && this.Categories.length > 0) {
+                    if (this.Categories.length > 1)
+                        this.Categories.splice(0, 1);
+                    this.SetCategorySliderImages();
+                    ProductService.GetByCategoryIds(this.Categories.map(x => x.Id)).then(data => {
+                        for (let i = 0; i < this.Categories.length; i++) {
+                            this.Products[i] = data.filter(prd => {
+                                return prd.CategoryIds.includes(this.Categories[i].Id)
+                            });
+                            this.Products[i] = this.Products[i].sort((a, b) => a.Order > b.Order ? 1 : -1);
+                        }
+                        //this.SetProductsSliderImages();
+                        this.SetProductPricesIndex();
+                    }).catch(data => {
+                    });
+                }
+            });
+    }
     ngOnDestroy(): void {
         this.accSub?.unsubscribe();
         this.urlSubscription?.unsubscribe();

@@ -14,7 +14,6 @@ export class CheckOutComponent implements OnInit {
   private accSub: Subscription | null = null;
   constructor(private router: Router, private route: ActivatedRoute, private sharedData: SharedDataService, private account: AuthService) {
   }
-
   ngOnInit(): void {
     this.accSub = this.account.UserToken.subscribe(acc => {
       if (!acc || acc == "" || !this.account.HasPermissionToPage("Check Out"))
@@ -25,8 +24,6 @@ export class CheckOutComponent implements OnInit {
       this.sharedData.SetMenuStatus(false)
     });
   }
-
-
   ngOnDestroy(): void {
     this.accSub?.unsubscribe();
   }
